@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: agriyo-eurakaservice
+
+server:
+  port: 80
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
+    service-url:
+      defaultZone: http://localhost:80/
+
+zuul:
+  #Service will be mapped under the /api URI
+  prefix: /api
+  routes:
+    agriyo-dbservice:
+      path: /agriyo-dbservice/**
+      url: http://localhost:80
+    agriyo-userservice:
+      path: /agriyo-userservice/**
+      url: http://localhost:80
+    agriyo-orderservice:
+      path: /agriyo-orderservice/**
+      url: http://localhost:80
